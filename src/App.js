@@ -33,12 +33,19 @@ const App = () => {
     projectFirestore.collection("movies").doc(id).delete()
   }
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault()
 
     const newMovie = {title: movieTitle, minage: movieAge, time: movieTime}
 
-    projectFirestore.collection("movies").add(newMovie)
+    try {
+      await projectFirestore.collection("movies").add(newMovie)
+      setMovieTitle("")
+      setMovieAge("")
+      setMovieTime("")
+    } catch (err) {
+      setError("Failed to add the movie to the database: " + err.message)
+    }    
   }
 
 
@@ -46,15 +53,23 @@ const App = () => {
     <form onSubmit={submitForm}>
       <input type="text" 
       onChange={ (e) => setMovieTitle( e.target.value ) } 
-      placeholder="Movie name"/><br />
+      placeholder="Movie name"
+      value={movieTitle}
+      /><br />
 
       <input type="number" 
       onChange={ (e) => setMovieAge( e.target.value ) } 
-      placeholder="Minimum Age" min="0" /><br />
+      placeholder="Minimum Age" 
+      min="0"
+      value={movieAge} 
+      /><br />
 
       <input type="number" 
       onChange={ (e) => setMovieTime( e.target.value ) } 
-      placeholder="Movie duration" min="0"/><br />
+      placeholder="Movie duration" 
+      min="0"
+      value={movieTime}
+      /><br />
       
       <input type="submit" value="Add movie"/>
     </form>
