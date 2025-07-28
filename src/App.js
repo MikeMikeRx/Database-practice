@@ -7,13 +7,20 @@ const App = () => {
 
   useEffect( ()=>{
     projectFirestore.collection("movies").get().then( (snapshot)=>{
-      console.log(snapshot);
 
       if(snapshot.empty){
         setError("No files found")
+      } else {
+        let result = []
+        snapshot.docs.forEach( (oneMovie) => {
+          result.push( {id: oneMovie.id, ...oneMovie.data()} )
+        })
+        setData(result)        
       }
       
-    })
+    }).catch( (err) => {
+      setError(err.message)
+    } )
   }, [])
 
   return <div>
