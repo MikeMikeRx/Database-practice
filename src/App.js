@@ -37,6 +37,8 @@ const App = () => {
     e.preventDefault()
 
     const newMovie = {title: movieTitle, minage: movieAge, time: movieTime}
+
+    projectFirestore.collection("movies").add(newMovie)
   }
 
 
