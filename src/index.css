@@ -1,0 +1,23 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #141414;
+    color: aliceblue;
+}
+
+.all-movies {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.one-movie {
+    border: 1px solid red;
+    font-size: 20px;
+    width: 400px;
+    padding: 5px 10px;
+    text-align: center;
+}

@@ -20,15 +20,15 @@ const App = () => {
       
     }).catch( (err) => {
       setError(err.message)
-    } )
+    })
   }, [])
 
-  return <div>
+  return <div className="all-movies">
     {error && <p>{error}</p>}
     {data.map( (oneMovie)=> {
       const {id, title, minage, time} = oneMovie
 
-      return <div key={id}>
+      return <div key={id} className="one-movie">
         <h1>{title}</h1>
         <p>{time} min</p>
         <p>Age {minage} +</p>
