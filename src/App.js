@@ -33,15 +33,31 @@ const App = () => {
     projectFirestore.collection("movies").doc(id).delete()
   }
 
+  const submitForm = (e) => {
+    e.preventDefault()
+
+    console.log(movieTitle, movieAge, movieTime);
+      
+  }
+
 
   return <div className="all-movies">
-    <form>
-      <input type="text" placeholder="Movie name"/><br />
-      <input type="number" placeholder="Minimum Age" min="0" /><br />
-      <input type="number" placeholder="Movie duration" min="0"/><br />
-      <input type="submit" value="Add movie"/>
+    <form onSubmit={submitForm}>
+      <input type="text" 
+      onChange={ (e) => setMovieTitle( e.target.value ) } 
+      placeholder="Movie name"/><br />
 
+      <input type="number" 
+      onChange={ (e) => setMovieAge( e.target.value ) } 
+      placeholder="Minimum Age" min="0" /><br />
+
+      <input type="number" 
+      onChange={ (e) => setMovieTime( e.target.value ) } 
+      placeholder="Movie duration" min="0"/><br />
+      
+      <input type="submit" value="Add movie"/>
     </form>
+
 
     {error && <p>{error}</p>}
     {data.map( (oneMovie)=> {
