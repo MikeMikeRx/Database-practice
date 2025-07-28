@@ -23,6 +23,11 @@ const App = () => {
     })
   }, [])
 
+  const deleteMovie = (id) => {
+    projectFirestore.collection("movies").doc(id).delete()
+  }
+
+
   return <div className="all-movies">
     {error && <p>{error}</p>}
     {data.map( (oneMovie)=> {
@@ -32,6 +37,7 @@ const App = () => {
         <h1>{title}</h1>
         <p>{time} min</p>
         <p>Age {minage} +</p>
+        <button onClick={ () => {deleteMovie(id)}}>Remove from database</button>
       </div>
     })}
   </div>
