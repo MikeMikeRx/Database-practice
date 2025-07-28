@@ -25,6 +25,15 @@ const App = () => {
 
   return <div>
     {error && <p>{error}</p>}
+    {data.map( (oneMovie)=> {
+      const {id, title, minage, time} = oneMovie
+
+      return <div key={id}>
+        <h1>{title}</h1>
+        <p>{time} min</p>
+        <p>Age {minage} +</p>
+      </div>
+    })}
   </div>
   
 }
