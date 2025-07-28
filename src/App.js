@@ -49,19 +49,14 @@ const App = () => {
   }
 
 
-  return <div className="all-movies">
-    <form onSubmit={submitForm}>
+  return <div className="wrap"> 
+    <h1>Add a Movie to the Database</h1>
+
+    <form onSubmit={submitForm} className="form">
       <input type="text" 
       onChange={ (e) => setMovieTitle( e.target.value ) } 
       placeholder="Movie name"
       value={movieTitle}
-      /><br />
-
-      <input type="number" 
-      onChange={ (e) => setMovieAge( e.target.value ) } 
-      placeholder="Minimum Age" 
-      min="0"
-      value={movieAge} 
       /><br />
 
       <input type="number" 
@@ -70,24 +65,33 @@ const App = () => {
       min="0"
       value={movieTime}
       /><br />
-      
+
+      <input type="number" 
+      onChange={ (e) => setMovieAge( e.target.value ) } 
+      placeholder="Minimum age" 
+      min="0"
+      value={movieAge} 
+      /><br />
+
       <input type="submit" value="Add movie"/>
     </form>
 
 
     {error && <p>{error}</p>}
+
+    <div className="all-movies">
     {data.map( (oneMovie)=> {
       const {id, title, minage, time} = oneMovie
 
       return <div key={id} className="one-movie">
-        <h1>{title}</h1>
+        <h2>{title}</h2>
         <p>{time} min</p>
         <p>Age {minage} +</p>
         <button onClick={ () => {deleteMovie(id)}}>Remove from database</button>
       </div>
     })}
   </div>
-  
+</div>  
 }
 
 export default App
