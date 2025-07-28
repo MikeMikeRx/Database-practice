@@ -36,8 +36,7 @@ const App = () => {
   const submitForm = (e) => {
     e.preventDefault()
 
-    console.log(movieTitle, movieAge, movieTime);
-      
+    const newMovie = {title: movieTitle, minage: movieAge, time: movieTime}
   }
 
 
