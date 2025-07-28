@@ -10,12 +10,14 @@ const App = () => {
 
       if(snapshot.empty){
         setError("No files found")
+        setData([])
       } else {
         let result = []
         snapshot.docs.forEach( (oneMovie) => {
           result.push( {id: oneMovie.id, ...oneMovie.data()} )
         })
-        setData(result)        
+        setData(result)
+        setError("")        
       }      
     }, (err) => {setError(err.message)})
     
